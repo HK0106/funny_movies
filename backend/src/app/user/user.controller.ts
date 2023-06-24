@@ -1,9 +1,18 @@
-import {Body, Controller, Post, UsePipes, ValidationPipe,} from "@nestjs/common";
+import {
+  Body,
+  Controller,
+  Post,
+  UsePipes,
+  ValidationPipe,
+} from "@nestjs/common";
 
-import {UserService} from "./user.service";
-import {CreateUserDto} from "./dto/createUser.dto";
-import {UserLoginResponse, UserRegisterResponse} from "./interface/user.interface";
-import {LoginDto} from './dto/login.dto';
+import { UserService } from "./user.service";
+import { CreateUserDto } from "./dto/createUser.dto";
+import {
+  UserLoginResponse,
+  UserRegisterResponse,
+} from "./interface/user.interface";
+import { LoginDto } from "./dto/login.dto";
 
 @Controller("user")
 export class UserController {

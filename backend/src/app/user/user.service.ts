@@ -1,12 +1,15 @@
-import {HttpException, Inject, Injectable} from "@nestjs/common";
+import { HttpException, Inject, Injectable } from "@nestjs/common";
 import * as bcrypt from "bcryptjs";
-import {ERROR_MAP, USER_REPOSITORY} from "../../common/constant/user";
-import {JwtService} from "@nestjs/jwt";
-import {User} from "../../core/database/models/users";
-import {CreateUserDto} from "./dto/createUser.dto";
-import {LoginDto} from "./dto/login.dto";
-import {UserLoginResponse, UserRegisterResponse,} from "./interface/user.interface";
-import {jwtPayload} from './interface/jwtPayload.interface';
+import { ERROR_MAP, USER_REPOSITORY } from "../../common/constant/user";
+import { JwtService } from "@nestjs/jwt";
+import { User } from "../../core/database/models/users";
+import { CreateUserDto } from "./dto/createUser.dto";
+import { LoginDto } from "./dto/login.dto";
+import {
+  UserLoginResponse,
+  UserRegisterResponse,
+} from "./interface/user.interface";
+import { jwtPayload } from "./interface/jwtPayload.interface";
 
 @Injectable()
 export class UserService {
@@ -49,7 +52,6 @@ export class UserService {
     createUserDto: CreateUserDto,
   ): Promise<UserRegisterResponse> {
     const isEmailExist = await this.getUserInfomation(createUserDto.email);
-
     if (isEmailExist) {
       throw new HttpException(ERROR_MAP.EMAIL_REGISTED, 401);
     }
@@ -58,7 +60,7 @@ export class UserService {
       email: createUserDto.email,
       password: this.genPassword(createUserDto.password),
     });
-    return newUser.id;
+    return { id: newUser.id };
   }
   /**
    * Promise compare password
