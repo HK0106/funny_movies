@@ -1,7 +1,8 @@
-import {Sequelize} from "sequelize-typescript";
-import {ConfigService} from "@nestjs/config";
+import { Sequelize } from "sequelize-typescript";
+import { ConfigService } from "@nestjs/config";
 
-import {User} from "./models/users";
+import { User } from "./models/users";
+import { ShareVideo } from "./models/shareVideo";
 
 export const DatabaseProvider = [
   {
@@ -13,9 +14,7 @@ export const DatabaseProvider = [
 
       const sequelize = new Sequelize({
         ...database,
-        models: [
-          User,
-        ],
+        models: [User, ShareVideo],
       });
 
       console.log("Connect database successfully!!!!");

@@ -108,7 +108,7 @@ describe("UserService", () => {
         id: 1,
         email: "test@example.com",
         password: "hashedPassword",
-      });
+      } as User);
 
       await expect(service.createUser(createUserDto)).rejects.toThrowError(
         HttpException,
@@ -134,7 +134,9 @@ describe("UserService", () => {
       const token = "generatedToken";
       const expectedResponse = { token, userId: userExist.id };
 
-      jest.spyOn(service, "getUserInfomation").mockResolvedValue(userExist);
+      jest
+        .spyOn(service, "getUserInfomation")
+        .mockResolvedValue(userExist as User);
       jest.spyOn(service, "comparePassword").mockResolvedValue(true);
       jest.spyOn(service, "generateToken").mockResolvedValue(token);
 
@@ -166,7 +168,9 @@ describe("UserService", () => {
         password: "hashedPassword",
       };
 
-      jest.spyOn(service, "getUserInfomation").mockResolvedValue(userExist);
+      jest
+        .spyOn(service, "getUserInfomation")
+        .mockResolvedValue(userExist as User);
       jest.spyOn(service, "comparePassword").mockResolvedValue(false);
 
       await expect(service.login(loginDto)).rejects.toThrowError(HttpException);
@@ -180,6 +184,8 @@ describe("UserService", () => {
 });
 // Mock user repository class for testing
 class MockUserRepository {
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   findOne() {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   create() {}
 }

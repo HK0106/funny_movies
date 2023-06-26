@@ -22,11 +22,11 @@ export async function up(i: any) {
         allowNull: false,
       },
       title: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT("medium"),
         allowNull: false,
       },
       description: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT("long"),
         allowNull: false,
       },
       emailShare: {

@@ -22,7 +22,7 @@ export class UserService {
    *
    * @returns {Promise}
    */
-  async getUserInfomation(email): Promise<any> {
+  async getUserInfomation(email): Promise<User> {
     return this.userRepository.findOne({
       attributes: ["id", "email", "password"],
       where: {
@@ -84,6 +84,11 @@ export class UserService {
   async generateToken(data: jwtPayload): Promise<string> {
     return this.jwtService.sign(data);
   }
+
+  /**
+   * User login service
+   * @param userData
+   */
   async login(userData: LoginDto): Promise<UserLoginResponse> {
     const userExist = await this.getUserInfomation(userData.email);
 

@@ -1,9 +1,12 @@
+import process from "process";
+
 export const env = {
   server: {
     environment: process.env.NODE_ENV,
     host: process.env.SERVER_HOST,
     port: process.env.SERVER_PORT,
   },
+  googleApiKey: process.env.GOOGLE_API_KEY,
   database: {
     host: process.env.DATABASE_HOST,
     replicationHost:

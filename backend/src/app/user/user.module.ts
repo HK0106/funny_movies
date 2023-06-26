@@ -1,15 +1,13 @@
-import { Module } from "@nestjs/common";
-import { JwtModule } from "@nestjs/jwt";
-
 /** Module */
-
+import { JwtModule } from "@nestjs/jwt";
+import { Module } from "@nestjs/common";
+import { PassportModule } from "@nestjs/passport";
 /** Controller */
 import { UserController } from "./user.controller";
 
 /** Provider */
 import { UserService } from "./user.service";
 import { UserProvider } from "./user.provider";
-import { PassportModule } from "@nestjs/passport";
 import { JwtStrategy } from "./strategy/jwt.strategy";
 
 @Module({

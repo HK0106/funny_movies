@@ -1,5 +1,4 @@
 import { Module } from "@nestjs/common";
-import { APP_GUARD } from "@nestjs/core";
 import { ConfigModule } from "@nestjs/config";
 
 /** Modules */
@@ -9,7 +8,7 @@ import { UserModule } from "./app/user/user.module";
 
 /** Controllers */
 import { AppController } from "./app.controller";
-
+import { ShareVideoModule } from "./app/shareVideo/shareVideo.module";
 /** Providers */
 import { AppService } from "./app.service";
 import configuration from "./config/configuration";
@@ -24,6 +23,7 @@ import configuration from "./config/configuration";
     DatabaseModule,
     MigrationModule,
     UserModule,
+    ShareVideoModule,
   ],
   controllers: [AppController],
   providers: [AppService],

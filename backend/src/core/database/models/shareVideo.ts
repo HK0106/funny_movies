@@ -1,6 +1,6 @@
 import { Table, Column, Model, DataType } from "sequelize-typescript";
 
-const tableName = "Users";
+const tableName = "ShareVideos";
 
 @Table({
   paranoid: true,
@@ -20,7 +20,5 @@ export class ShareVideo extends Model {
   description: string;
 
   @Column
-  set emailShare(value: string) {
-    this.setDataValue("email", value.toLowerCase());
-  }
+  emailShare: string;
 }

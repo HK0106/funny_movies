@@ -4,6 +4,7 @@ export const env = {
     host: process.env.SERVER_HOST || "127.0.0.1",
     port: process.env.SERVER_PORT || 3000,
   },
+  googleApiKey: process.env.GOOGLE_API_KEY,
   database: {
     host: process.env.DATABASE_HOST || "127.0.0.1",
     replicationHost:
