@@ -5,10 +5,7 @@ import { JwtService } from "@nestjs/jwt";
 import { User } from "../../core/database/models/users";
 import { CreateUserDto } from "./dto/createUser.dto";
 import { LoginDto } from "./dto/login.dto";
-import {
-  UserLoginResponse,
-  UserRegisterResponse,
-} from "./interface/user.interface";
+import { UserLoginResponse } from "./interface/user.interface";
 import { jwtPayload } from "./interface/jwtPayload.interface";
 
 @Injectable()
@@ -39,7 +36,7 @@ export class UserService {
    *
    * @returns {String}
    */
-  private genPassword(password): string {
+  genPassword(password): string {
     const salt = bcrypt.genSaltSync(10);
     return bcrypt.hashSync(password, salt);
   }
@@ -48,19 +45,24 @@ export class UserService {
    * Create user function
    * @param createUserDto
    */
-  async createUser(
-    createUserDto: CreateUserDto,
-  ): Promise<UserRegisterResponse> {
+  async createUser(createUserDto: CreateUserDto): Promise<User> {
     const isEmailExist = await this.getUserInfomation(createUserDto.email);
     if (isEmailExist) {
       throw new HttpException(ERROR_MAP.EMAIL_REGISTED, 401);
     }
 
-    const newUser = await this.userRepository.create({
-      email: createUserDto.email,
-      password: this.genPassword(createUserDto.password),
+    return await this.create(createUserDto);
+  }
+
+  /**
+   * Create user repository
+   * @param userData
+   */
+  create(userData): Promise<User> {
+    return this.userRepository.create({
+      email: userData.email.toLowerCase(),
+      password: this.genPassword(userData.password),
     });
-    return { id: newUser.id };
   }
   /**
    * Promise compare password
@@ -70,7 +72,7 @@ export class UserService {
    *
    * @returns {Promise}
    */
-  private async comparePassword(bodyPassword, passwordDb): Promise<boolean> {
+  async comparePassword(bodyPassword, passwordDb): Promise<boolean> {
     return bcrypt.compareSync(bodyPassword, passwordDb);
   }
   /**
@@ -79,7 +81,7 @@ export class UserService {
    * @param data
    * @returns {Promise}
    */
-  private async generateToken(data: jwtPayload): Promise<string> {
+  async generateToken(data: jwtPayload): Promise<string> {
     return this.jwtService.sign(data);
   }
   async login(userData: LoginDto): Promise<UserLoginResponse> {

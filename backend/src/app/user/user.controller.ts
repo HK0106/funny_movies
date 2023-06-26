@@ -23,7 +23,8 @@ export class UserController {
   async createUser(
     @Body() userData: CreateUserDto,
   ): Promise<UserRegisterResponse> {
-    return await this.userService.createUser(userData);
+    const user = await this.userService.createUser(userData);
+    return { id: user.id };
   }
 
   @UsePipes(new ValidationPipe({ whitelist: true }))
