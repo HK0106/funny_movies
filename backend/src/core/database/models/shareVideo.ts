@@ -6,7 +6,7 @@ const tableName = "Users";
   paranoid: true,
   tableName,
 })
-export class User extends Model {
+export class ShareVideo extends Model {
   @Column
   videoId: string;
 
