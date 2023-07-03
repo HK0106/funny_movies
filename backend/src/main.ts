@@ -11,6 +11,7 @@ async function bootstrap() {
     logger: true,
   });
   app.setGlobalPrefix("api");
+  app.enableCors();
   app.useGlobalPipes(
     /**
      * Reference: https://docs.nestjs.com/techniques/validation#auto-validation

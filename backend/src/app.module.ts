@@ -12,6 +12,7 @@ import { ShareVideoModule } from "./app/shareVideo/shareVideo.module";
 /** Providers */
 import { AppService } from "./app.service";
 import configuration from "./config/configuration";
+import { SocketGateway } from "./app.gateway";
 
 @Module({
   imports: [
@@ -26,6 +27,6 @@ import configuration from "./config/configuration";
     ShareVideoModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, SocketGateway],
 })
 export class AppModule {}

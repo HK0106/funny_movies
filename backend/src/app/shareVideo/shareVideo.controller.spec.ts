@@ -4,9 +4,7 @@ import axios from "axios";
 import { Test, TestingModule } from "@nestjs/testing";
 import { ShareVideoService } from "./shareVideo.service";
 import { ShareVideo } from "../../core/database/models/shareVideo";
-import {
-  SHARE_VIDEO_REPOSITORY,
-} from "../../common/constant/shareVideo";
+import { SHARE_VIDEO_REPOSITORY } from "../../common/constant/shareVideo";
 
 describe("ShareVideoService", () => {
   let service: ShareVideoService;
@@ -36,6 +34,7 @@ describe("ShareVideoService", () => {
     );
     configService = module.get<ConfigService>(ConfigService);
   });
+
 
   describe("shareVideo", () => {
     const videoUrl = "https://www.youtube.com/watch?v=video1";
@@ -203,7 +202,6 @@ describe("ShareVideoService", () => {
         description: "Description 1",
       });
     });
-
   });
 
   describe("findOneByVideoId", () => {

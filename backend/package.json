@@ -28,7 +28,9 @@
     "@nestjs/jwt": "^7.2.0",
     "@nestjs/passport": "^7.1.5",
     "@nestjs/platform-express": "^7.6.15",
+    "@nestjs/platform-socket.io": "^7.6.15",
     "@nestjs/sequelize": "^0.2.0",
+    "@nestjs/websockets": "^7.6.15",
     "@types/lodash": "^4.14.170",
     "@types/passport-jwt": "^3.0.5",
     "@types/passport-local": "^1.0.33",
@@ -47,6 +49,7 @@
     "rxjs": "^6.6.6",
     "sequelize": "^6.6.2",
     "sequelize-typescript": "^2.1.0",
+    "socket.io": "^4.7.0",
     "umzug": "^2.3.0"
   },
   "devDependencies": {

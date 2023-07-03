@@ -1,0 +1,11 @@
+.icon {
+  display: none;
+}
+
+@media screen and (max-width: 1420px) {
+  .login {display: none;}
+  .icon {
+    float: right;
+    display: block;
+  }
+}
